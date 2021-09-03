@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='receipt.company.vat']//div" position="replace">
+            <div>VAT Nr:<t t-esc="receipt.company.vat"/></div>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='receipt.orderlines']" position="inside">
+            <t t-if="line.note">
+                <t t-esc="line.note"/>
+            </t>
+        </xpath>
+    </t>
+</templates>
