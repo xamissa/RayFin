@@ -7,7 +7,7 @@
 
         <xpath expr="//t[@t-foreach='receipt.orderlines']" position="inside">
             <t t-if="line.note">
-                <t t-esc="line.note"/>
+                <br/><t t-esc="line.note"/>
             </t>
         </xpath>
     </t>
