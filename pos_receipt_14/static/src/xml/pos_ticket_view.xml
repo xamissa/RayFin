@@ -10,5 +10,20 @@
                 <br/><t t-esc="line.note"/>
             </t>
         </xpath>
+
+        <xpath expr="//t[@t-if='isTaxIncluded']" position="replace">
+            <t t-if="isTaxIncluded">
+                <!--t t-foreach="receipt.tax_details" t-as="tax" t-key="tax.name">
+                    <div>
+                        <t t-esc="tax.name" />
+                        <span t-esc="env.pos.format_currency_no_symbol(tax.amount)" class="pos-receipt-right-align"/>
+                    </div>
+                </t-->
+                <div>
+                    Total VAT
+                    <span t-esc="env.pos.format_currency(receipt.total_tax)" class="pos-receipt-right-align"/>
+                </div>
+            </t>
+        </xpath>
     </t>
 </templates>

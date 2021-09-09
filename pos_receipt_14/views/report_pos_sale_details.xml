@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_pos_details">
+    <t t-set="company" t-value="env.company"/>
+    <t t-call="web.html_container">
+    <t t-call="web.internal_layout">
+        <div class="page">
+
+            <div class="text-center">
+                <h2>POS Sales Details</h2>
+
+                <strong>Start Date: <t t-esc="start_date"/></strong><br/>
+                <strong>End Date: <t t-esc="end_date"/></strong>
+            </div>
+
+            <table  class="table table-sm">
+                <thead><tr>
+                    <th>Customer</th>
+                    <th>Receipt Ref</th>
+                    <th>Order Ref</th>
+                    <th>Session</th>
+                    <th>Product</th>
+                    <th>Note</th>
+                    <th>Qty</th>
+                    <th>Unit Price</th>
+                    <th>Subtotal</th>
+                </tr></thead>
+                <tbody>
+                <tr t-foreach='lines.items()' t-as='line'>
+                    <td>
+                        <t t-esc="line[1]['customer']"/>
+                    </td>
+                    <td>
+                        <t t-esc="line[1]['receipt_ref']"/>
+                    </td>
+                    <td>
+                        <t t-esc="line[1]['order_ref']"/>
+                    </td>
+                    <td>
+                        <t t-esc="line[1]['session']"/>
+                    </td>
+                    <td>
+                        <t t-esc="line[1]['product_name']"/>
+                    </td>
+                    <td>
+                        <t t-esc="line[1]['note']"/>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="line[1]['qty']"/>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="line[1]['unit_price']"/>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="line[1]['subtotal']" t-options="{'widget': 'float', 'precision': currency_precision}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <div class="clearfix" name="po_total">
+                <div id="total" class="row" name="total">
+                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                        <table class="table table-sm">
+                            <tr class="border-black o_total">
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">
+                                    <t t-esc="total" t-options="{'widget': 'float', 'precision': currency_precision}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </t>
+    </t>
+</template>
+</data>
+</openerp>
+
