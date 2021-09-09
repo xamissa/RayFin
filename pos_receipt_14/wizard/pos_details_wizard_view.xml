@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_details_wizard_form" model="ir.ui.view">
+        <field name="name">pos.sale.details.wizard.form</field>
+        <field name="model">pos.sale.details.wizard</field>
+        <field name="arch" type="xml">
+        <form string="Sales Details Report Excel">
+            <group>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </group>
+            <footer>
+                <button name="print_pdf" string="PRINT" type="object" class="oe_highlight"/>
+                or
+                <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_pos_details_wizard" model="ir.actions.act_window">
+        <field name="name">POS Details Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.sale.details.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="pos_sale_details_excel" name="POS Sale Details" parent="point_of_sale.menu_point_rep" action="pos_receipt_14.action_pos_details_wizard"/>
+
+</odoo>
